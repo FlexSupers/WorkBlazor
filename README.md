@@ -1,5 +1,5 @@
 <h1 align="center">Work Blazor</h1>
-<h3 align="center"style>Вывод базы данных и страница</h3>
+<h3 align="center"style>Работа с Blazor</h3>
 <p align="center"><img src="Screenshots/Blazor.png"></p>
 
 ---
