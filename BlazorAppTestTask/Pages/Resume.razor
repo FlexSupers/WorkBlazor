@@ -1,0 +1,342 @@
+﻿@page "/resume"
+
+@inherits ResumeViewModel
+
+<body class="my-resume">
+    <div class="main-content">
+        <div class="bloko-column-up">
+            <div class="bloko-gap">
+                <a class="link-back" href="">К списку резюме</a>
+            </div>
+        </div>
+
+        <div class="resume-online">
+            Сейчас на сайте
+
+        </div>
+
+        <div class="resume-header-title">
+            @if (!Flag)
+            {
+                <div class="resume-header-name">
+                    <h2>@datapage.Name</h2>
+                </div>
+                <button @onclick="SaveData">Редактировать</button>
+            }
+            else
+            {
+                <input type="text" @bind="@datapage.Name" minlength="4" maxlength="20" size="10" />
+                <button @onclick="CancelEdit">Cancel</button>
+                <button @onclick="SaveData">Save</button>
+            }
+            <div class="bloko-spacing-1">
+            </div>
+            @*<p>
+                <span data-ng-required="resume-personal-gender">Мужчина</span>
+            </p>*@
+
+            @*@if (!Flag)
+            {
+                <p>
+                    <span data-ng-required="resume-personal-gender">Мужчина</span>
+                </p>
+            }
+            else
+            {
+                <input type="text" id="name" name="name" required
+                   minlength="4" maxlength="8" size="10" />
+            }*@
+
+            @if (!Flag)
+            {
+                <p>
+                    <span>@datapage.Gender</span>
+                </p>
+                <button @onclick="SaveData">Редактировать</button>
+            }
+            else
+            {
+                <input type="text" @bind="@datapage.Gender" minlength="4" maxlength="20" size="10" />
+                <button @onclick="CancelEdit">Cancel</button>
+                <button @onclick="SaveData">Save</button>
+            }
+            @*<p>
+                <a class="resume-block-edit" href="">
+                    <span data-ng-required="resume-personal-edit-text">Редактировать</span>
+                </a>
+            </p>*@
+            <div class="resume-header-field">
+                <div class="bloko-text-contact">
+                    Контакты
+                </div>
+                <div class="bloko-spacing-2">
+                </div>
+                @*<div class="resume-number">
+                    <span>+7 929 089 68 10</span>
+                </div>
+                <div class="resume-email">
+                    <a class="resume-email-link" href="mailto:flexsupers@gmail.com">
+                        <span>flexsupers@gmail.com</span>
+                    </a>
+                    &nbsp;- предпочитаемый способ связи
+                </div>*@
+                @if (!Flag)
+                {
+                    <div class="resume-number">
+                        <span>@datapage.Phone</span>
+                    </div>
+                    <div class="resume-email">
+                        <a class="resume-email-link" href="mailto:flexsupers@gmail.com">
+                            <span>@datapage.Email</span>
+                        </a>
+                        &nbsp;- предпочитаемый способ связи
+                    </div>
+                    <button @onclick="SaveData">Редактировать</button>
+                }
+                else
+                {
+                    <input type="text" @bind="@datapage.Phone" minlength="4" maxlength="20" size="10" />
+                    <input type="text" @bind="@datapage.Email" minlength="4" maxlength="20" size="10" />
+                    <button @onclick="CancelEdit">Cancel</button>
+                    <button @onclick="SaveData">Save</button>
+                }
+                <div class="bloko-spacing-3">
+                </div>
+            </div>
+            <div class="resume-guard">
+                @if (!Flag)
+                {
+                    <p>
+                        <span>@datapage.City</span>
+                    </p>
+                    <button @onclick="SaveData">Редактировать</button>
+                }
+                else
+                {
+                    <input type="text" @bind="@datapage.City" minlength="4" maxlength="20" size="10" />
+                    <button @onclick="CancelEdit">Cancel</button>
+                    <button @onclick="SaveData">Save</button>
+                }
+                @*<p>
+                    <span>Новосибирск,</span>
+                    не готов к переезду,
+                    готов к редким командировкам
+                </p>*@
+            </div>
+
+            <div class="line-left">
+            </div>
+            <div class="line-right">
+            </div>
+        </div>
+
+        <div class="resume-header-photo">
+            <div class="resume-photo">
+                <img src="/photo.png" />
+            </div>
+            <div class="resume-photo-change">
+                <a class="link-change" href="">Изменить фото</a>
+            </div>
+        </div>
+
+        <div class="resume-wrapper">
+            <div class="bloko-gap">
+                <div class="resume-block-position">
+                    <div class="bloko-column">
+                        <div class="resume-block-title">
+                            <h2 class="bloko-header">
+                                <span class="resume-block-title-text">
+                                    <span>Junior C# Developer</span>
+                                </span>
+                            </h2>
+                            <a class="resume-block-edit-4" href="">
+                                <span class="bloko-text-small-edit-3">Редактировать</span>
+                            </a>
+                        </div>
+                        <div class="resume-block-item">
+                            <div class="resume-block-container">
+                                <div class="bloko-gap-spec">
+                                    <span class="resume-block-spec-category">
+                                        Специализации:
+                                    </span>
+                                    <ul>
+                                        <li class="resume-block-position">
+                                            Программист, разработчик
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p>
+                                    Занятость:
+                                    полная занятость, частичная занятость
+                                </p>
+                                <p>
+                                    График работы:
+                                    полный день, гибкий график
+                                </p>
+                            </div>
+                        </div>
+                        <div class="resume-block-experience">
+                            <div class="bloko-column-2">
+                                <div class="resume-experience">
+                                    <h2 class="bloko-header">
+                                        <span class="resume-block-title-text-2">
+                                            <span>Опыт работы 2 года 2 месяца</span>
+                                        </span>
+                                    </h2>
+                                    <a class="resume-block-edit-5" href="">
+                                        <span class="bloko-text-small-edit-4">Редактировать</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="resume-block-item-2">
+                                <div class="resume-block-item-gap">
+                                    <div class="resume-block-date">
+                                        Февраль
+                                        2021
+                                        -
+                                        по настоящее время
+                                        <div class="bloko-exp">
+                                            <span>
+                                                2
+                                                года
+                                            </span>
+                                            <span>
+                                                2
+                                                месяца
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="resume-block-exp">
+                                        <div class="resume-block-exp-1">
+                                            <span>
+                                                Vak
+                                            </span>
+                                        </div>
+                                        <div class="resume-block-exp-2">
+                                            <span>
+                                                Программист C#, Unity Developer
+                                            </span>
+                                        </div>
+                                        <div class="resume-block-exp-3">
+                                            <span>
+                                                Разработка инди игры под названием Fire Soul
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resume-block-salary">
+                            <h2 class="bloko-header-salary">
+                                <span class="resume-block-salary-edit">
+                                    <span>30 тысяч рублей на руки</span>
+                                </span>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="skills-table">
+                        <div class="skills-header">
+                            <h2 class="bloko-header">
+                                <span class="resume-block-title-text-3">
+                                    <span>Ключевые навыки</span>
+                                </span>
+                            </h2>
+                            <a class="resume-block-edit-6" href="">
+                                <span class="bloko-text-small-edit-4">Редактировать</span>
+                            </a>
+                        </div>
+                        <div class="resume-block-main-skills">
+                            <div class="bloko-tag-list">
+                                <div class="bloko-tag-1">
+                                    <span class="tag-1">
+                                        <span>
+                                            Общительный
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="bloko-tag-2">
+                                    <span class="tag-2">
+                                        <span>
+                                            Дружелюбен
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="bloko-tag-3">
+                                    <span class="tag-3">
+                                        <span>
+                                            Ответственный
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resume-block-about">
+                    <div class="resume-block-title-about">
+                        <h2 class="bloko-header">
+                            <span class="resume-block-title-text-3">
+                                <span>Обо мне</span>
+                            </span>
+                        </h2>
+                        <a class="resume-block-edit-6" href="">
+                            <span class="bloko-text-small-edit-5">Редактировать</span>
+                        </a>
+                    </div>
+                    <div class="resume-block-about-text">
+                        <span>
+                            Схватываю материал на лету и быстро обучаюсь!
+                            <br />
+                            Харизма имеется)
+                            <br />
+                            Спокойно общаюсь с людьми и разбираюсь в материале.
+                            <br />
+                            Готов достигать новых высот именно с Вами!
+                            <br />
+                            Спокойно владею такими программами как Photoshop,Ilustrator,Vegas и Premier Pro.
+                            <br />
+                            Опытный пользователь ПК и сети Интернет.
+                            <br />
+                            Учусь в сфере программирования.
+                        </span>
+                    </div>
+                </div>
+                <div class="resume-block-education">
+                    <div class="resume-block-title-educ">
+                        <h2 class="bloko-header">
+                            <span class="resume-block-title-text-3">
+                                <span>Высшее образование (Бакалавр)</span>
+                            </span>
+                        </h2>
+                        <a class="resume-block-edit-6" href="">
+                            <span class="bloko-text-small-edit-6">Редактировать</span>
+                        </a>
+                    </div>
+                    <div class="resume-block-description-edu">
+                        <div class="block-date-first">
+                            <span>
+                                2024
+                            </span>
+                        </div>
+                        <div class="block-description-education">
+                            <div class="university">
+                                <span>
+                                    Сибирский государственный университет телекомуникаций и информатики, Новосибирск
+                                </span>
+                            </div>
+                            <div class="facultet">
+                                <span>
+                                    Факультет информатики и вычислительной техники (ИВТ),
+                                </span>
+                                <span>
+                                    Информатика и вычислительная техника (бакалавр техники и технологии)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+

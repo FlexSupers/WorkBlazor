@@ -1,0 +1,22 @@
+﻿@page "/timer"
+
+@inherits TimerViewModel
+
+<div class="main-timer">
+    <div class="timer-res">
+        <h3>Timer</h3>
+        <input type="text" @bind="dataTimer.Minutes" minlength="4" maxlength="20" size="10" />
+        <input type="text" @bind="dataTimer.Seconds" minlength="4" maxlength="20" size="10" />
+        <button @onclick="StartTime">Start</button>
+        <button @onclick="PauseTimer">Pause</button>
+        <button @onclick="ResetTimer">Reset</button>
+    </div>
+    <div class="stop-watch">
+        <h3>StopWatch</h3>
+        <input type="text" @bind="@elapsedTime" minlength="4" maxlength="20" size="10" />
+        <button @onclick="Start">Start</button>
+        <button @onclick="Pause">Pause</button>
+        <button @onclick="StartTimer">Reset</button>
+        <p>@elapsedTime</p>
+    </div>
+</div>

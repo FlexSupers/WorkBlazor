@@ -1,0 +1,383 @@
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1:focus {
+    outline: none;
+}
+
+a, .btn-link {
+    color: #0071c1;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.content {
+    padding-top: 1.1rem;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+.blazor-error-boundary {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
+    padding: 1rem 1rem 1rem 3.7rem;
+    color: white;
+}
+
+    .blazor-error-boundary::after {
+        content: "An error has occurred."
+    }
+
+.nav-scrollable {
+    position: fixed;
+}
+
+.bloko-column-up {
+    /*border проверка границ*/
+    border: 0px solid darkblue;
+    height: 50px;
+    width: 200px;
+}
+
+.resume-photo {
+    position: relative;
+    /*border-radius: 10px;*/ /* —кругление углов изображени€ */
+    /*border: 5px solid #fff;*/ /* ÷вет и ширина рамки */
+    /*box-shadow: 2px 1px 5px #999999;*/ /* ÷вет и размер тени */
+    width: 140px;
+    left: 1000px;
+    top: -520px;
+}
+
+.resume-block-edit {
+    text-decoration: none;
+    font-size: 85%;
+    position: relative;
+    top: -20px;
+}
+
+.resume-block-date {
+    position: absolute;
+    top: 860px;
+}
+
+.resume-block-container {
+    position: absolute;
+    top: 630px;
+}
+
+.resume-block-edit-2 {
+    text-decoration: none;
+}
+
+.resume-block-edit-3 {
+    text-decoration: none;
+}
+
+.resume-block-edit-5 {
+    text-decoration: none;
+}
+
+.link-change {
+    position: relative;
+    width: 140px;
+    left: 1000px;
+    top: -520px;
+    text-decoration: none;
+    font-size: 85%;
+}
+
+
+.resume-header-name {
+    /*font-size: 32px;
+    line-height: 1.12;
+    font-family: Srbija Sans;
+    font-stretch: normal;
+    font-weight: bold;
+    font-style: normal;*/
+
+    font-family: PT Sans Narrow, sans-serif;
+}
+
+.resume-header-title {
+    position: relative;
+    height: 500px;
+}
+
+.bloko-text-contact {
+    color: gray;
+}
+
+.bloko-text-small-edit-1 {
+    font-size: 85%;
+    top: 5px;
+}
+
+.bloko-text-small-edit-2 {
+    position: relative;
+    font-size: 85%;
+    top: -15px;
+}
+
+.bloko-text-small-edit-3 {
+    position: relative;
+    font-size: 85%;
+    top: -35px;
+    left: 245px;
+}
+
+.bloko-text-small-edit-4 {
+    position: relative;
+    font-size: 85%;
+    top: -35px;
+    left: 365px;
+}
+
+.bloko-text-small-edit-5 {
+    position: relative;
+    font-size: 85%;
+    top: -35px;
+    left: 255px;
+}
+
+.bloko-text-small-edit-6 {
+    position: relative;
+    font-size: 85%;
+    top: -35px;
+    left: 530px;
+}
+
+.block-description-education {
+    position: absolute;
+    top: 1460px;
+    left: 480px;
+}
+
+.block-date-first {
+    position: absolute;
+    top: 1460px;
+    left: 285px;
+}
+
+.university {
+    font-weight: bold;
+}
+
+.navbar-brand {
+    position: relative;
+    left: 55px;
+}
+
+.bloko-spacing-1 {
+    height: 10px;
+    width: 200px;
+}
+
+.bloko-exp {
+    color: gray;
+}
+
+.resume-online {
+    color: rgb(95, 91, 79);
+}
+
+.resume-email-link {
+    text-decoration: none;
+}
+
+.resume-block-title {
+    position: absolute;
+    top: 555px;
+}
+
+.resume-block-title-text {
+    font-family: PT Sans Narrow, sans-serif;
+}
+
+.resume-block-title-text-2 {
+    color: #AEABA3;
+    font-family: PT Sans Narrow, sans-serif;
+}
+
+.resume-block-title-text-3 {
+    color: #AEABA3;
+    font-family: PT Sans Narrow, sans-serif;
+}
+
+.resume-block-salary {
+    position: absolute;
+    top: 555px;
+    left: 1150px;
+    font-family: PT Sans Narrow, sans-serif;
+}
+
+.resume-block-edit-4 {
+    text-decoration: none;
+}
+
+.resume-block-edit-6 {
+    position: absolute;
+    left: -130px;
+    text-decoration: none;
+}
+
+.resume-experience {
+    position: absolute;
+    top: 810px;
+}
+
+.resume-block-exp {
+    position: absolute;
+    top: 860px;
+    left: 590px;
+}
+
+.resume-block-exp-1 {
+    font-weight: bold;
+}
+
+.resume-block-exp-2 {
+    font-weight: bold;
+}
+
+.resume-block-title-about {
+    position: absolute;
+    top: 1150px;
+    left: 285px;
+}
+
+.resume-block-about-text {
+    position: absolute;
+    top: 1200px;
+}
+
+.resume-block-title-educ {
+    position: absolute;
+    top: 1400px;
+}
+
+.skills-header {
+    position: absolute;
+    top: 1000px;
+    left: 285px;
+}
+
+.bloko-tag-list {
+    position: absolute;
+    top: 1060px;
+    left: 285px;
+}
+
+.tag-1 {
+    border-radius: 10px; /* —кругление углов изображени€ */
+    border: 5px outset #fff; /* ÷вет и ширина рамки */
+    box-shadow: 2px 1px 5px #999999; /* ÷вет и размер тени */
+}
+
+.tag-2 {
+    position: absolute;
+    left: 130px;
+    top: -5px;
+    border-radius: 10px; /* —кругление углов изображени€ */
+    border: 5px outset #fff; /* ÷вет и ширина рамки */
+    box-shadow: 2px 1px 5px #999999; /* ÷вет и размер тени */
+}
+
+.tag-3 {
+    position: absolute;
+    left: 250px;
+    top: -5px;
+    border-radius: 10px; /* —кругление углов изображени€ */
+    border: 5px outset #fff; /* ÷вет и ширина рамки */
+    box-shadow: 2px 1px 5px #999999; /* ÷вет и размер тени */
+}
+
+/*.line-left {
+    border-left: 1px solid #E4E2DC;
+    height: 1500px;
+    position: absolute;
+    left: 75%;
+    margin-left: -3px;
+    top: -20px;
+}*/
+.line-right {
+    padding-left: 0px;
+    /* необходим дл€ формировани€ позиций линий */
+    position: relative;
+    /* весь блок будет занимать ширину по размеру контента в нЄм */
+    display: inline-block;
+}
+
+    .line-right:before {
+        content: " ";
+        background: #E4E2DC;
+        width: 1620px;
+        height: 1px;
+        /* располагаем линию сверху от текста */
+        top: 20px;
+        /* включаем абсолютное позиционирование относительно блока с relative */
+        position: absolute;
+    }
+
+.link-back {
+    text-decoration: none;
+}
+
+.form-control {
+    /*display: flex;
+    padding-left: 5px;
+    position: relative;
+    top: -38px;
+    left: 1200px;
+    width: 150px;*/
+}
+/*.search {
+    padding-left: 5px;
+    position: relative;
+    left: 1210px;
+    top: -38px;
+}*/
+
+.btn-group-delete{
+    
+}
+

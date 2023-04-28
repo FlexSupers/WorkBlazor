@@ -1,0 +1,69 @@
+﻿@page "/obshaga"
+@inherits ObshagaViewModel
+@using BlazorAppTestTask.PageModels;
+@using BlazorAppTestTask.Pages.Obshaga.Edit
+@using BlazorAppTestTask.Data
+
+<div>
+    <h3>Жилье</h3>
+    <div>
+        <MatButton Raised="true" @onclick="CreateItem" Style="background-color: black">Создать</MatButton>
+        <MatButton Raised="true" @onclick="@(async() => {await GenerateExcel(mCurrentItem); })" Style="background-color: black">Сохранить в Excel</MatButton>
+        <div class="search" style="padding-left: 1350px; position: relative; top: -50px;">
+            <input type="text" class="form-control-sm" placeholder="Поиск" @bind-value="@FilteringName" @bind-value:event="oninput" />
+        </div>
+    </div>
+    <div>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>
+                        Номер
+                    </th>
+                    <th>
+                        Адрес
+                    </th>
+                    <th>
+                        Кол-во комнат
+                    </th>
+                    <th>
+                        
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            Общежитие №@item.ObsId
+                        </td>
+                        <td>
+                            @item.Address
+                        </td>
+                        <td>
+                            @item.NumRooms
+                        </td>
+                        <td>
+                            <MatButton Raised="true" @onclick="(() => ShowDialogInfo(item))" Style="background-color: black">Инфо</MatButton>
+                            <MatButton Raised="true" @onclick="(() => EditItem(item))" Style="background-color: black">Редактировать</MatButton>
+                            <MatButton Raised="true" @onclick="(() => ShowDialogDelete(item))" Style="background-color: black">Удалить</MatButton>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@if (isRemove && mCurrentItem != null)
+{
+    <DeleteComponent Answer="DeleteItem" IsOpened="isRemove"></DeleteComponent>
+}
+@if (mEditViewModel.IsOpened && mCurrentItem != null)
+{
+    <EditObshaga ViewModel="mEditViewModel" Save="Save" Reload="ReloadItem"></EditObshaga>
+}
+@if (isInfo && mCurrentItem != null)
+{
+    <InfoEdit ViewModel1="mEditViewModel" IsInfo="isInfo"></InfoEdit>
+}

@@ -1,0 +1,126 @@
+﻿@page "/student"
+@inherits StudentViewModel
+@using BlazorAppTestTask.PageModels;
+@using BlazorAppTestTask.Pages.Student.Edit
+@using BlazorAppTestTask.Data
+
+<div>
+    <h3>Студенты</h3>
+    <div>
+        <MatButton Raised="true" @onclick="CreateItem" Style="background-color: black">Создать</MatButton>
+        <MatButton Raised="true" @onclick="@(async() => {await GenerateExcel(mCurrentItem); })" Style="background-color: black">Сохранить в Excel</MatButton>
+        <div class="search" style="padding-left: 1265px; position: relative; top: -38px;">
+            <input type="text" class="form-control-sm" placeholder="Поиск" @bind-value="@FilteringName" @bind-value:event="oninput" />
+            <select type="text" class="form-control-sm" @bind="FilteringBookId" style="height: 34px; width: 100px; background-color: white;">
+                <option value="@valueFilter">Все книги</option>
+                @if (ModelBooks != null)
+                {
+                    @foreach (var item in ModelBooks)
+                    {
+                        <option value="@item.BookId">@item.Name</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Имя
+                    </th>
+                    <th>
+                        Отчество
+                    </th>
+                    <th>
+                        Фамилия
+                    </th>
+                    <th>
+                        Дата Рождения
+                    </th>
+                    <th>
+                        Местоположение
+                    </th>
+                    <th>
+                        Эл.адрес
+                    </th>
+                    <th>
+                        Книга
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.StudentId
+                        </td>
+                        <td>
+                            @item.FirstName
+                        </td>
+                        <td>
+                            @item.MiddleName
+                        </td>
+                        <td>
+                            @item.LastName
+                        </td>
+                        <td>
+                            @item.Birth.Value.ToString("d");
+                        </td>
+                        <td>
+                            @item.Location
+                        </td>
+                        <td>
+                            @item.Email
+                        </td>
+                        <td>
+                            @*тут будет отображение книг*@
+                            @(GetBookName(item.BookId))
+                        </td>
+                        <td>
+                            <MatButton Raised="true" @onclick="(() => EditItem(item))" Style="background-color: black">Редактировать</MatButton>
+                            <MatButton Raised="true" @onclick="(() => ShowDialogDelete(item))" Style="background-color: black">Удалить</MatButton>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<MatTable Items="@Model" class="mat-elevation-z5">
+    <MatTableHeader>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Фамилия</th>
+        <th>Дата Рождения</th>
+        <th>Местоположение</th>
+        <th>Эл.адрес</th>
+        <th>Книга</th>
+    </MatTableHeader>
+    <MatTableRow Context="Context">
+        <td>@Context.FirstName</td>
+        <td>@Context.MiddleName</td>
+        <td>@Context.LastName</td>
+        <td>@Context.Birth</td>
+        <td>@Context.Location</td>
+        <td>@Context.Email</td>
+        <td>@Context.BookId</td>
+    </MatTableRow>
+</MatTable>
+@if (mEditViewModel.IsOpened && mCurrentItem != null)
+{
+    <EditStudent ViewModel="mEditViewModel" Save="Save" Reload="ReloadItem"></EditStudent>
+}
+@if (isRemove && mCurrentItem != null)
+{
+    <DeleteComponent Answer="DeleteItem" IsOpened="isRemove"></DeleteComponent>
+}
+

@@ -1,0 +1,75 @@
+﻿@page "/books"
+@inherits BooksViewModel
+@using BlazorAppTestTask.Pages.Books.Edit
+@using BlazorAppTestTask.Pages.Student.Edit
+
+<div>
+    <h3>Книги</h3>
+    <div>
+        <MatButton Raised="true" @onclick="CreateItem" Style="background-color: black">Создать</MatButton>
+        <MatButton Raised="true" @onclick="@(async() => {await GenerateExcel(mCurrentItem); })" Style="background-color: black">Сохранить в Excel</MatButton>
+        <div class="search" style="padding-left: 1240px; position: relative; top: -38px;">
+            <input type="text" class="form-control-sm" placeholder="Поиск" @bind-value="@FilteringName" @bind-value:event="oninput" />
+        </div>
+    </div>
+    <div>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Название
+                    </th>
+                    <th>
+                        Дата публикации
+                    </th>
+                    <th>
+                        Автор
+                    </th>
+                    <th>
+                        Страницы
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.BookId
+                        </td>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.DateOfPublish.ToString("d");
+                        </td>
+                        <td>
+                            @item.Author
+                        </td>
+                        <td>
+                            @item.Pages
+                        </td>
+                        <td>
+                            <MatButton Raised="true" @onclick="(() => EditItem(item))" Style="background-color: black">Редактировать</MatButton>
+                            <MatButton Raised="true" @onclick="(() => ShowDialogDelete(item))" Style="background-color: black">Удалить</MatButton>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@if(mEditViewModel.IsOpened && mCurrentItem != null)
+{
+    <EditBooks ViewModel="mEditViewModel" Save="Save"></EditBooks>
+}
+@if (isRemove && mCurrentItem != null)
+{
+    <DeleteComponent Answer="DeleteItem" IsOpened="isRemove"></DeleteComponent>
+}

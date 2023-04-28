@@ -1,0 +1,42 @@
+﻿@page "/test"
+
+<button @onclick="(()=>{ChangeFlag();})" class="btn-primary">
+    Edit
+</button>
+@if (!Flag)
+{
+    <h1><strong>!Flag</strong></h1>
+}
+else
+{
+    <h1><strong>Flag</strong></h1>
+}
+
+@code 
+{
+    public bool Flag = false;
+    //public bool flag { get; set; }
+    //public bool isOpen;
+
+    protected void ChangeFlag()
+    {
+        if (!Flag)
+        {
+            Flag = true;
+        }
+        else
+        {
+            Flag = false;
+        }
+    }
+    //public void appendText()
+    //{
+    //    isOpen = false;
+    //    StateHasChanged();
+    //}
+
+    //private void cancel()
+    //{
+    //    isOpen = true;
+    //}
+}

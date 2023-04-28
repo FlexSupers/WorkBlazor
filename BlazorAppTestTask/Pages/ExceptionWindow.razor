@@ -1,0 +1,14 @@
+﻿<MatDialog @bind-IsOpen="IsOpened" CanBeClosed="false">
+    <MatDialogTitle>
+        <span style="font-size: 20px;">Увы( <br>
+            Данные не актуальны.<br>
+            Обновите страницу
+        </span>&ensp;
+    </MatDialogTitle>
+</MatDialog>
+
+@code 
+{
+    [Parameter]
+    public bool IsOpened { get; set; }
+}

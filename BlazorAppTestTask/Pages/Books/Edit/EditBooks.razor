@@ -1,0 +1,62 @@
+﻿@inherits EditBooksViewModel
+
+<MatDialog @bind-IsOpen="ViewModel.IsOpened" CanBeClosed="false">
+    <EditForm Model="ViewModel.Item" OnValidSubmit="@(() => Save.InvokeAsync(ViewModel.Item))">
+        <MatDialogTitle>
+            <span style="top: 20px;">Книги</span>
+            <div class="btn-group" style="padding-left: 300px; top: -10px;">
+                @if(ViewModel.IsConcurency)
+                {
+                    <button class="btn btn-warning" @onclick="ResetError">Reset</button>
+                }
+                else
+                {
+                    <input type="submit" value="Сохранить" class="btn-dark" style="float:right; border-radius: 8px; font-size: 15px;" />
+                }
+                <span class="btn btn-close" style="left: 20px" @onclick="@(e => ViewModel.IsOpened = false)"></span>
+            </div>
+            <span style="color:red; font-size:15px;">
+                @if (ViewModel.IsConcurency)
+                {
+                    <ErrorBoundary @ref="errorBoundary">
+                        <ChildContent>
+                            <EditBooks />
+                        </ChildContent>
+                        <ErrorContent Context="Exception">
+                            <p class="error-message">Данные не актуальны! Обновите страницу</p>   
+                        </ErrorContent>
+                    </ErrorBoundary>
+                }
+            </span>
+        </MatDialogTitle>
+        <MatDialogContent style="width: 100%; padding-top: 10px">
+            <div class="form-group row mb-1">
+                <label for="Name" class="col-3 pl-0">Название</label>
+                <InputText @bind-Value="ViewModel.Item.Name" Class="form-control-sm col-9" id="Name" />
+            </div>
+            <div class="form-group row mb-1">
+                <label for="Author" class="col-6 pl-0">Автор</label>
+                <InputText @bind-Value="ViewModel.Item.Author" Class="form-control-sm col-6" id="Author" />
+            </div>
+            <div class="form-group row mb-1">
+                <label for="Pages" class="col-6 pl-0">Страницы</label>
+                <InputText @bind-Value="ViewModel.Item.Pages" Class="form-control-sm col-6" id="Pages" />
+            </div>
+            <div class="form-group row mb-1">
+                <label for="DateOfPublish" class="col-6 pl-0">Дата публикации</label>
+                <InputDate @bind-Value="ViewModel.Item.DateOfPublish" Class="form-control-sm col-6" id="DateOfPublish" />
+            </div>
+        </MatDialogContent>
+    </EditForm>
+</MatDialog>
+
+@code 
+{
+    private ErrorBoundary errorBoundary;
+    private void ResetError()
+    {
+        errorBoundary?.Recover();
+
+    }
+}
+

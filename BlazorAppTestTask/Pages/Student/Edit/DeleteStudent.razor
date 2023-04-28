@@ -1,0 +1,11 @@
+﻿@inherits DeleteStudentViewModel
+
+<MatDialog @bind-IsOpen="IsOpened" CanBeClosed="false">
+        <MatDialogTitle>
+            <span style="">Вы хотите удалить запись?</span>
+            <div class="btn-group-delete" style="padding-left: 0px;">
+                <input type="submit" value="Да" class="btn-dark" style="border-radius: 8px; font-size: 15px; width: 200px;" @onclick="@(e => Answer.InvokeAsync(true))" />&nbsp;
+                <input type="submit" value="Нет" class="btn-dark" style="float:right; border-radius: 8px; font-size: 15px; width: 200px;" @onclick="@(e => Answer.InvokeAsync(false))" />&nbsp;
+            </div>
+        </MatDialogTitle>
+</MatDialog>

@@ -1,0 +1,38 @@
+﻿@inherits EditObshagaViewModel
+
+<MatDialog @bind-IsOpen="ViewModel.IsOpened" CanBeClosed="false">
+    <EditForm Model="ViewModel.Item" OnValidSubmit="@(() => Save.InvokeAsync(ViewModel.Item))">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <MatDialogTitle>
+            <span style="top: 20px;">Общежитие</span>&nbsp;
+            <div class="btn-group" style="padding-left: 395px; top: -40px;">
+                @if (ViewModel.IsConcurency)
+                {
+                    <span class="btn btn-warning" @onclick="@(() => Reload.InvokeAsync(ViewModel.Item))">Reset</span>
+                }
+                else
+                {
+                    <input type="submit" value="Сохранить" class="btn-dark" style="float:right; border-radius: 8px; font-size: 15px;" />
+                }
+                <span class="btn btn-close" style="left: 20px" @onclick="@(e => ViewModel.IsOpened = false)"></span>
+            </div>
+            <span style="color:red; font-size:15px;">
+                @if (ViewModel.IsConcurency)
+                {
+                    @ViewModel.ConcurencyErrorText
+                }
+            </span>
+        </MatDialogTitle>
+        <MatDialogContent style="width: 100%; padding-top: 10px">
+            <div class="form-group row mb-1">
+                <label for="Address" class="col-3 pl-0">Улица</label>
+                <InputText @bind-Value="ViewModel.Item.Address" Class="form-control-sm col-9" id="Address" />
+            </div>
+            <div class="form-group row mb-1">
+                <label for="NumRooms" class="col-3 pl-0">Кол-во комнат</label>
+                <InputNumber @bind-Value="ViewModel.Item.NumRooms" Class="form-control-sm col-9" id="NumRooms" />
+            </div>
+        </MatDialogContent>
+        <ValidationSummary />
+    </EditForm>
+</MatDialog>
