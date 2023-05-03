@@ -95,26 +95,7 @@
         </table>
     </div>
 </div>
-<MatTable Items="@Model" class="mat-elevation-z5">
-    <MatTableHeader>
-        <th>Имя</th>
-        <th>Отчество</th>
-        <th>Фамилия</th>
-        <th>Дата Рождения</th>
-        <th>Местоположение</th>
-        <th>Эл.адрес</th>
-        <th>Книга</th>
-    </MatTableHeader>
-    <MatTableRow Context="Context">
-        <td>@Context.FirstName</td>
-        <td>@Context.MiddleName</td>
-        <td>@Context.LastName</td>
-        <td>@Context.Birth</td>
-        <td>@Context.Location</td>
-        <td>@Context.Email</td>
-        <td>@Context.BookId</td>
-    </MatTableRow>
-</MatTable>
+
 @if (mEditViewModel.IsOpened && mCurrentItem != null)
 {
     <EditStudent ViewModel="mEditViewModel" Save="Save" Reload="ReloadItem"></EditStudent>

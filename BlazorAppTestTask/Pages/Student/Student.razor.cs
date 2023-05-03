@@ -100,7 +100,7 @@ namespace BlazorAppTestTask.Pages.Student
             mCurrentItem = item;
             isRemove = true;
         }
-        //дописать EditItem
+
         public void EditItem(StudentItemViewModel item)
         {
             mEditViewModel.Books = BooksService.GetAll();

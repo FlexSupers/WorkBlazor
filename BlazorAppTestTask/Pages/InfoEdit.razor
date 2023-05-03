@@ -1,130 +1,135 @@
-﻿@using BlazorAppTestTask.Pages.Obshaga.Edit;
-@using BlazorAppTestTask.PageModels;
-@using BlazorAppTestTask.Pages.Obshaga;
-@using BlazorAppTestTask.Pages.Student.Edit
-@using BlazorAppTestTask.Pages.Student
-@using BlazorAppTestTask.Data
-@inherits InfoEditViewModel
+﻿@inherits InfoEditViewModel
 
-<MatDialog @bind-IsOpen="ViewModel1.IsOpened" CanBeClosed="false">
-    <EditForm Model="ViewModel1.Item" OnValidSubmit="@(() => Save.InvokeAsync(ViewModel1.Item))">
-        <DataAnnotationsValidator></DataAnnotationsValidator>
-        <MatDialogTitle>
-            <span style="top: 20px;">Информация</span>&nbsp;
-            <div class="btn-group" style="padding-left: 395px; top: -40px;">
-                @if (ViewModel1.IsConcurency)
-                {
-                    <span class="btn btn-warning" @onclick="@(() => Reload.InvokeAsync(ViewModel1.Item))">Reset</span>
-                }
-                else
-                {
-                    <input type="submit" value="Сохранить" class="btn-dark" style="float:right; border-radius: 8px; font-size: 15px;" />
-                }
-                <span class="btn btn-close" style="left: 20px" @onclick="@(e => ViewModel1.IsOpened = false)"></span>
-            </div>
-            <span style="color:red; font-size:15px;">
-                @if (ViewModel1.IsConcurency)
-                {
-                    @ViewModel1.ConcurencyErrorText
-                }
-            </span>
-        </MatDialogTitle>
-        <MatDialogContent style="width: 100%; padding-top: 10px">
-            <MatTable Items="@Model" class="mat-elevation-z5">
-                <MatTableHeader>
-                    <th>Имя</th>
-                    <th>Отчество</th>
-                    <th>Фамилия</th>
-                    <th>Дата Рождения</th>
-                    <th>Местоположение</th>
-                    <th>Эл.адрес</th>
-                    <th>Книга</th>
-                </MatTableHeader>
-                <MatTableRow Context="Context">
-                    <td>@Context.FirstName</td>
-                    <td>@Context.MiddleName</td>
-                    <td>@Context.LastName</td>
-                    <td>@Context.Birth</td>
-                    <td>@Context.Location</td>
-                    <td>@Context.Email</td>
-                    <td>@Context.BookId</td>
-                </MatTableRow>
-            </MatTable>
-            <MatTable Items="@Model" class="mat-elevation-z5">
-                <MatTableHeader>
-                    <th>Имя</th>
-                    <th>Отчество</th>
-                    <th>Фамилия</th>
-                    <th>Дата Рождения</th>
-                    <th>Местоположение</th>
-                    <th>Эл.адрес</th>
-                    <th>Книга</th>
-                </MatTableHeader>
-                <MatTableRow Context="Context">
-                    <td>@Context.FirstName</td>
-                    <td>@Context.MiddleName</td>
-                    <td>@Context.LastName</td>
-                    <td>@Context.Birth</td>
-                    <td>@Context.Location</td>
-                    <td>@Context.Email</td>
-                    <td>@Context.BookId</td>
-                </MatTableRow>
-            </MatTable>
-            <div>
-                <table class="table table-sm">
-                    <thead>
+<MatDialog @bind-IsOpen="IsInfoOpen" CanBeClosed="false">
+    <MatDialogTitle>
+        <span style="top: 20px;">Информация</span>&nbsp;
+        <div class="btn-group" style="padding-left: 450px; top: -40px;">
+            @*@if (ViewModel1.IsConcurency)
+            {
+            <span class="btn btn-warning" @onclick="@(() => Reload.InvokeAsync(ViewModel1.Item))">Reset</span>
+            }
+            else
+            {
+            <input type="submit" value="Сохранить" class="btn-dark" style="float:right; border-radius: 8px; font-size: 15px;" />
+            }*@
+            <input type="submit" value="Сохранить" class="btn-dark" style="float:right; border-radius: 8px; font-size: 15px;" @onclick="@(e => {IsInfoOpen = false; Close.InvokeAsync();})" />
+            <span class="btn btn-close" style="left: 20px" @onclick="@(e => {IsInfoOpen = false; Close.InvokeAsync();})"></span>
+        </div>
+    </MatDialogTitle>
+    <MatDialogContent style="padding-top: 10px; width: 800px;">
+        <div>
+            <table class="table table-sm" style="border: 1px solid;">
+                <thead>
+                    <tr>
+                        <th>
+                            Имя
+                        </th>
+                        <th>
+                            Отчество
+                        </th>
+                        <th>
+                            Фамилия
+                        </th>
+                        <th>
+                            Дата Рождения
+                        </th>
+                        <th>
+                            Местоположение
+                        </th>
+                        <th>
+                            Эл.адрес
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in AddModel)
+                    {
                         <tr>
-                            <th>
-                                Имя
-                            </th>
-                            <th>
-                                Отчество
-                            </th>
-                            <th>
-                                Фамилия
-                            </th>
-                            <th>
-                                Дата Рождения
-                            </th>
-                            <th>
-                                Местоположение
-                            </th>
-                            <th>
-                                Эл.адрес
-                            </th>
-                            <th>
-
-                            </th>
+                            <td>
+                                @item.FirstName
+                            </td>
+                            <td>
+                                @item.MiddleName
+                            </td>
+                            <td>
+                                @item.LastName
+                            </td>
+                            <td>
+                                @item.Birth.Value.ToString("d");
+                            </td>
+                            <td>
+                                @item.Location
+                            </td>
+                            <td>
+                                @item.Email
+                            </td>
+                            <td>
+                                <MatButton Raised="true" @onclick="(() => DeleteItem(item))" Style="background-color: black">-</MatButton>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @item.FirstName
-                                </td>
-                                <td>
-                                    @item.MiddleName
-                                </td>
-                                <td>
-                                    @item.LastName
-                                </td>
-                                <td>
-                                    @item.Birth.Value.ToString("d");
-                                </td>
-                                <td>
-                                    @item.Location
-                                </td>
-                                <td>
-                                    @item.Email
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </MatDialogContent>
-        <ValidationSummary />
-    </EditForm>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <table class="table table-sm" style="border: 1px solid;">
+                <thead>
+                    <tr>
+                        <th>
+                            Имя
+                        </th>
+                        <th>
+                            Отчество
+                        </th>
+                        <th>
+                            Фамилия
+                        </th>
+                        <th>
+                            Дата Рождения
+                        </th>
+                        <th>
+                            Местоположение
+                        </th>
+                        <th>
+                            Эл.адрес
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.FirstName
+                            </td>
+                            <td>
+                                @item.MiddleName
+                            </td>
+                            <td>
+                                @item.LastName
+                            </td>
+                            <td>
+                                @item.Birth.Value.ToString("d");
+                            </td>
+                            <td>
+                                @item.Location
+                            </td>
+                            <td>
+                                @item.Email
+                            </td>
+                            <td>
+                                <MatButton Raised="true" @onclick="(() => AddItem(item))" Style="background-color: black">+</MatButton>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </MatDialogContent>
 </MatDialog>

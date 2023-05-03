@@ -37,7 +37,6 @@ namespace BlazorAppTestTask.Pages
             using (FileStream fs = new FileStream("data.json", FileMode.Open))
             {
                 datapage = JsonSerializer.Deserialize<DataPage>(fs);
-                Console.WriteLine($"Name: {datapage?.Name}  Age: {datapage?.Gender}");
                 StateHasChanged();
 
             }
