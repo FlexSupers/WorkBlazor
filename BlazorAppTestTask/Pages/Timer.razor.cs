@@ -49,9 +49,6 @@ namespace BlazorAppTestTask.Pages
 
         public void Start()
         {
-            //dataTimer.Seconds = dataTimer.Seconds - 1;
-            //dataTimer.Minutes = dataTimer.Minutes - 1;
-            //StateHasChanged();
             timer.Enabled = true;
 
         }

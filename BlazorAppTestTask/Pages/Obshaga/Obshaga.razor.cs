@@ -19,8 +19,9 @@ namespace BlazorAppTestTask.Pages.Obshaga
 
         public ObshagaItemViewModel mCurrentItem;
         public EditObshagaItemViewModel mEditViewModel = new EditObshagaItemViewModel();
+
         public bool isRemove;
-        public bool isInfo;
+        public bool isInfoOpen;
         public int valueFilter = 0;
 
 
@@ -70,9 +71,14 @@ namespace BlazorAppTestTask.Pages.Obshaga
             isRemove = true;
         }
 
+        public void CloseInfo()
+        {
+            isInfoOpen = false;
+        }
+
         public void ShowDialogInfo(ObshagaItemViewModel item)
         {
-            isInfo = true;
+            isInfoOpen = true;
         }
 
         public void EditItem(ObshagaItemViewModel item)

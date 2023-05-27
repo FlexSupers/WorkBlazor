@@ -61,9 +61,9 @@
 }
 @if (mEditViewModel.IsOpened && mCurrentItem != null)
 {
-    <EditObshaga ViewModel="mEditViewModel" Save="Save" Reload="ReloadItem"></EditObshaga>
+    <EditObshaga ViewModel="mEditViewModel" Save="Save" Reload="ReloadItem" ></EditObshaga>
 }
-@if (isInfo && mCurrentItem != null)
+@if (isInfoOpen)
 {
-    <InfoEdit ViewModel1="mEditViewModel" IsInfo="isInfo"></InfoEdit>
+    <InfoEdit IsInfoOpen="isInfoOpen" Close="CloseInfo"></InfoEdit>
 }
